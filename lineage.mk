@@ -1,22 +1,18 @@
-# Inherit device configuration
-$(call inherit-product, device/samsung/zenltexx/zenltexx.mk)
-$(call inherit-product, device/samsung/zenlte-common/zenlte.mk)
+# Initialise device config
+$(call inherit-product, device/samsung/zenltexx/full_zenltexx.mk)
 
-# Inherit from the 64 bit configuration
-$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
+TARGET_SCREEN_HEIGHT := 2560
+TARGET_SCREEN_WIDTH := 1440
 
-# Inherit from the common Open Source product configuration
-$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
+# Enhanced NFC
+# $(call inherit-product, vendor/lineage/config/nfc_enhanced.mk)
 
-# Inherit some common CM stuff.
-$(call inherit-product, vendor/cm/config/common_full_phone.mk)
-
-## Device identifier. This must come after all inclusions
-PRODUCT_NAME := lineage_zenltexx
-PRODUCT_DEVICE := zenltexx
-PRODUCT_BRAND := samsung
-PRODUCT_MODEL := SM-G928F
-PRODUCT_MANUFACTURER := samsung
+# Inherit some common LineageOS stuff.
+$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    PRODUCT_NAME=zenltexx
+    PRODUCT_NAME="zenltexx" \
+    TARGET_DEVICE="zenlte"
+
+PRODUCT_NAME := lineage_zenltexx
+PRODUCT_DEVICE := zenltexx
